@@ -15,6 +15,11 @@
 
 @implementation BlurEffectManager
 
++ (void)load
+{
+    [[BlurEffectManager shareManager] setup];
+}
+
 + (instancetype)shareManager
 {
     static BlurEffectManager *_manager = nil;
@@ -51,13 +56,20 @@
 - (void)appWillResignActive:(id)sender
 {
     //进入后台,实现模糊效果
+    [self addBlurView];
+}
+
+- (void)addBlurView
+{
+    UIImage *image = [self getAppBlurImage];
+    self.maskView.image = image;
     [[UIApplication sharedApplication].keyWindow addSubview:self.maskView];
 }
 
 - (void)removeBlurView
 {
     if (_maskView) {
-        [self.maskView removeFromSuperview];
+        [_maskView removeFromSuperview];
     }
 }
 
@@ -85,8 +97,6 @@
         UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeBlurView)];
         [_maskView addGestureRecognizer:tapGR];
     }
-    UIImage *image = [self getAppBlurImage];
-    _maskView.image = image;
     
     return _maskView;
 }

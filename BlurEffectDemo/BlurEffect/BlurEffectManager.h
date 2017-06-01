@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  高斯模糊
+ */
 @interface BlurEffectManager : NSObject
 
-+ (instancetype)shareManager;
-- (void)setup;
+//+ (instancetype)shareManager;
+//- (void)setup;
 
 @end
