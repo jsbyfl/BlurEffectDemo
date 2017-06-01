@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "BlurEffectManager.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    [[BlurEffectManager shareManager] setup];
     
     return YES;
 }
